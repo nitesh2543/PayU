@@ -12,21 +12,22 @@ import android.view.ViewGroup;
 
 import com.example.nitesh.payu.R;
 import com.example.nitesh.payu.callbacks.OnItemClickListener;
-import com.example.nitesh.payu.databinding.FragmentFilterResultBinding;
+import com.example.nitesh.payu.databinding.FragmentMenuBinding;
 import com.example.nitesh.payu.mvvm.model.Project;
 import com.example.nitesh.payu.mvvm.view.adapter.ProjectListAdapter;
 import com.example.nitesh.payu.util.Constants;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FilterResultFragment extends Fragment {
+public class LovedProjectsFragment extends Fragment {
 
-    private FragmentFilterResultBinding binding;
+    private FragmentMenuBinding binding;
     private Constants.ProjectClickListener listener;
-
+    private List<Project> projects = new ArrayList<>();
 
     @Override
     public void onAttach(Context context) {
@@ -37,23 +38,22 @@ public class FilterResultFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_filter_result, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_menu, container, false);
         return binding.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        List<Project> projects = Project.listAll(Project.class, "num_backers");
+        //projects = Project.listAll(Project.class, "title");
+        projects.addAll(Project.find(Project.class, "num_backers > ? and percentage_funded >= ?", "30000", "60"));
+
         binding.recyclerView.setAdapter(new ProjectListAdapter(getActivity(), projects,
                 new OnItemClickListener() {
                     @Override
                     public void onItemClick(Object o, View view, int position) {
-                        listener.onProjectClicked((Project) o,Constants.ProjectType.NORMAL);
+                        listener.onProjectClicked((Project) o, Constants.ProjectType.LOVELY);
                     }
                 }, null));
-
-        binding.emptyView.setVisibility(projects.size()==0?View.VISIBLE:View.GONE);
-        binding.progressBar.setVisibility(View.GONE);
     }
 }

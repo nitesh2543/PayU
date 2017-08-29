@@ -45,7 +45,7 @@ public class SplashActivity extends AppCompatActivity {
             startHomeActivity();
         } else {
             if (!Network.isConnected(this)) {
-                Toast.makeText(this, R.string.network_err, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.network_err_first_launch, Toast.LENGTH_LONG).show();
                 return;
             }
             Call<List<Project>> call = APIClient.getAPIInterface().downloadProjects();

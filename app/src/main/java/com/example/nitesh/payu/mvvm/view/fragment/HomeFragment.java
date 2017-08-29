@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
                 new OnItemClickListener() {
             @Override
             public void onItemClick(Object o, View view, int position) {
-                listener.onProjectClicked((Project) o);
+                listener.onProjectClicked((Project) o,Constants.ProjectType.NORMAL);
             }
         }, this));
         binding.sort.setOnClickListener(new View.OnClickListener() {

@@ -1,5 +1,7 @@
 package com.example.nitesh.payu.util;
 
+import android.view.View;
+
 import com.example.nitesh.payu.mvvm.model.Project;
 
 /**
@@ -15,10 +17,17 @@ public class Constants {
 
     public interface BundleKeys {
         String URL = "url";
+        String POSITION = "pos";
+        String NAVIGATION = "navigation";
+    }
+
+    public interface ProjectType{
+        String NORMAL = "normal";
+        String LOVELY = "lovely";
     }
 
     public interface ProjectClickListener{
-        void onProjectClicked(Project project);
+        void onProjectClicked(Project project , String type);
     }
 
     public interface ProjectListListener {
@@ -27,5 +36,13 @@ public class Constants {
 
     public interface ProjectFilterListener {
         void onFilterClicked();
+    }
+
+    public interface LeftMenuListener{
+        void onLeftMenuClicked(String navigation , View v,int position);
+    }
+
+    public interface LeftMenuClickListener{
+        void onLeftMenuClicked(String navigation ,int position);
     }
 }

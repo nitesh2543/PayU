@@ -15,5 +15,7 @@
     <string name="sort_msg">List will be sorted in alphabetical order of project title.</string>
     <string name="filter_msg">List will be filtered in increasing order of No. of Backers.</string>
     <string name="exit_toast">Press back again to quit.</string>
-    <string name="network_err">Please check your internet connection and try again.</string>
+    <string name="network_err_detail_page">Internet is required to view the detail page. Please check your internet connection and try again.</string>
+    <string name="network_err_first_launch">Internet is required for the first launch. Please check your internet connection and try again.</string>
+
 </resources>
